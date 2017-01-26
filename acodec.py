@@ -1,18 +1,9 @@
 # acodec.py
-import encodings, codecs, re, sys
-# a mini tokenizer
-_qs=r"'(?:[^'\\\n]|\\.|\\\n)*?'(?!')|'''(?:[^\\]|\\.)*?'''"
-String = r"[uU]?[rR]?(?:%s|%s)"%(_qs, _qs.replace("'",'"'))
-Comment=r'\#.*'
-Name= r"[^#\"'\s\n;]+"
-tok_re=re.compile(r"%s|%s|%s|(?P<e>[;\.])"%(Name, String , Comment))
+import encodings, codecs
 
 # Our StreamReader
 class aStreamReader(codecs.StreamReader):
     def readline(self, size=None, keepends=True):
-        def repl(m):
-            r=m.group()
-            return "end," if m.group("e") else r+","
         if getattr(self, "pysrc", None)==None:          
             r=self.stream.read().decode("utf8")
             ## ToDo ## r = outputFromInput(r)
@@ -31,5 +22,4 @@ def search_function(s):
         streamwriter=u8.streamwriter)
 
 codecs.register(search_function)  # register our new codec search function
-# End of acodec.py
 
