@@ -3,12 +3,16 @@ import encodings, codecs
 
 # Our StreamReader
 class aStreamReader(codecs.StreamReader):
+    def outputFromInput(self, input):
+        output = input
+        return output
+
     def readline(self, size = None, keepends = True):
         if getattr(self, "pysrc", None) == None:          
-            r = self.stream.read().decode("utf8")
-            ## ToDo ## r = outputFromInput(r)
-            self.pysrc = r.splitlines()
-        return  u'%s\n' % self.pysrc.pop(0) if self.pysrc else u''
+            input = self.stream.read().decode("utf8")
+            output = self.outputFromInput(input)
+            self.pysrc = output.splitlines()
+        return u'%s\n' % self.pysrc.pop(0) if self.pysrc else u''
         
 def search_function(s):
     if s != "acodec": 
