@@ -15,7 +15,7 @@ class aStreamReader(codecs.StreamReader):
             return "end," if m.group("e") else r+","
         if getattr(self, "pysrc", None)==None:          
             r=self.stream.read().decode("utf8")
-            r="from amachine import *;run([%s])" % tok_re.sub(repl,r)
+            ## ToDo ## r = outputFromInput(r)
             self.pysrc=r.splitlines()
         return  u'%s\n'%self.pysrc.pop(0) if self.pysrc else u''
         
