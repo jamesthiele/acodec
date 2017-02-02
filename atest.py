@@ -1,7 +1,5 @@
-# atest.py (written in our new language A)
 # encoding: acodec
-print  "Hello!\n"
+print  "Hello!"
 i = 0
 print i
-# End of atest.py
 
