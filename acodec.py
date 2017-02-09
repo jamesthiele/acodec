@@ -1,10 +1,6 @@
 import codecs, cStringIO, encodings
 
-class StreamReader(codecs.StreamReader):
-    ## def __init__(self):
-        ## codecs.StreamReader.__init__(self, *args, **kwargs)
-        ## pass
-
+class NullCodec(codecs.StreamReader):
     def translate(self, input):
         output = input
         return output
@@ -25,7 +21,7 @@ def search_function(s):
                              decode = utf8.decode,
                              incrementalencoder = utf8.incrementalencoder,
                              incrementaldecoder = utf8.incrementaldecoder,
-                             streamreader = StreamReader,
+                             streamreader = NullCodec,
                              streamwriter = utf8.streamwriter)
 
 codecs.register(search_function)
