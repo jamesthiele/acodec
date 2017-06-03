@@ -18,7 +18,7 @@ class StreamReader(utf_8.StreamReader):
         self.stream = cStringIO.StringIO(data)
 
 def search_function(s):
-    print s
+    ## print s
     if s!='token_myprint':
         return None
     utf8=encodings.search_function('utf8') # Assume utf8 encoding
